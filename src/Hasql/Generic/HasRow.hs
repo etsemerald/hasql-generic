@@ -253,6 +253,14 @@ instance HasDField Int where
 instance HasDField (Maybe Int) where
   {-# INLINE mkDField #-}
   mkDField = fmap (fmap fromIntegral) (nullableValue int8)
+  
+instance HasDField Double where
+  {-# INLINE mkDField #-}
+  mkDField = fmap fromRational (value float8)
+  
+instance HasDField (Maybe Double) where
+  {-# INLINE mkDField #-}
+  mkDField = fmap (fmap fromRational) (nullableValue float8)
 
 --------------------------------------------------------------------------------
 word2 :: Value Word16
